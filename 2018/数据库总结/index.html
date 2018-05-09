@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="GitHub,sql," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="基本概念 DATA: 数据        数据长期存储，有序的共享集合   DB：  数据库      长期存储在计算机内有组织的，共享的数据集合，即在计算机系统中按一定的数据模型组织存储和使用的相关连的数据集合">
+<meta name="keywords" content="GitHub,sql">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据库总结">
+<meta property="og:url" content="http://yoursite.com/2018/数据库总结/index.html">
+<meta property="og:site_name" content="旧事。">
+<meta property="og:description" content="基本概念 DATA: 数据        数据长期存储，有序的共享集合   DB：  数据库      长期存储在计算机内有组织的，共享的数据集合，即在计算机系统中按一定的数据模型组织存储和使用的相关连的数据集合">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-05-09T15:12:51.531Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="数据库总结">
+<meta name="twitter:description" content="基本概念 DATA: 数据        数据长期存储，有序的共享集合   DB：  数据库      长期存储在计算机内有组织的，共享的数据集合，即在计算机系统中按一定的数据模型组织存储和使用的相关连的数据集合">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/数据库总结/"/>
+
+
+
+
+
+  <title>数据库总结 | 旧事。</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?f5c768ae6519bfeceabc6496ef47c28c";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">旧事。</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">石头的博客</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/数据库总结/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="石头">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="旧事。">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">数据库总结</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-22T00:00:00+08:00">
+                2018-02-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/学习历程/" itemprop="url" rel="index">
+                    <span itemprop="name">学习历程</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/学习历程/sql/" itemprop="url" rel="index">
+                    <span itemprop="name">sql</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            <span id="busuanzi_container_page_pv">  |  阅读量 <span id="busuanzi_value_page_pv"></span> 次</span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><ol>
+<li>DATA: <strong>数据</strong>       <blockquote>
+<p>数据长期存储，有序的共享集合</p>
+</blockquote>
+</li>
+<li>DB：  <strong>数据库</strong>     <blockquote>
+<p>长期存储在计算机内有组织的，共享的数据集合，即在计算机系统中按一定的数据模型组织存储和使用的相关连的数据集合   </p>
+</blockquote>
+</li>
+</ol>
+<a id="more"></a>
+<ol start="3">
+<li>DBMS: <strong>数据库管理系统</strong><blockquote>
+<p>数据系统的核心，是为数据库的建立，使用和维护而配置的软件（略）</p>
+</blockquote>
+</li>
+<li>DBS:<strong>数据库系统</strong></li>
+<li>DBA:<strong>数据库管理员</strong></li>
+</ol>
+<h2 id="三级模式结构"><a href="#三级模式结构" class="headerlink" title="三级模式结构"></a>三级模式结构</h2><ol>
+<li>外模式：<blockquote>
+<p>外模式也称子模式或用户模式，他是对数据库用户能够看见和使用的局部数据的逻辑结构和特征的描述。对应着<strong>视图</strong></p>
+</blockquote>
+</li>
+<li>模式:<blockquote>
+<p>模式也称概念模式或逻辑模式，是对数据库中全部数据的逻辑结构和特征的描述，是所有用户的公共数据视图。对应着<strong>基本表</strong></p>
+</blockquote>
+</li>
+<li>内模式: <blockquote>
+<p>内模式也称存储模式或无厘模式，是对数据物理结构和存储方式的描述，是数据在数据库内部的表示方式，一个数据库只有一个内模式。对应着<strong>索引</strong></p>
+</blockquote>
+</li>
+</ol>
+<h2 id="两级映像"><a href="#两级映像" class="headerlink" title="两级映像"></a>两级映像</h2><ol>
+<li>外模式/模式映像<blockquote>
+<p>描述的是数据的全局逻辑结构，外模式描述的是数据的局部逻辑结构，对应于同一个模式可以有任意多个外模式。<br>保证数据的<strong>逻辑独立性</strong></p>
+</blockquote>
+</li>
+<li>模式/内模式映像<blockquote>
+<p>在数据库种只有一个模式，也只有一个内模式，所以模式/内模式映像是唯一的，他定义了数据库全局了逻辑结构与存储直接的对应关系。<br>保证数据的<strong>物理独立性</strong></p>
+</blockquote>
+</li>
+</ol>
+<h2 id="E-R图"><a href="#E-R图" class="headerlink" title="E-R图"></a>E-R图</h2><blockquote>
+<ul>
+<li>矩形：实体</li>
+<li>椭圆：属性</li>
+<li>菱形：联系  <em>联系可以有属性</em></li>
+</ul>
+</blockquote>
+<h2 id="实体关系图"><a href="#实体关系图" class="headerlink" title="实体关系图"></a>实体关系图</h2><h3 id="联系"><a href="#联系" class="headerlink" title="联系"></a>联系</h3><ul>
+<li>一对一联系(1:1)<blockquote>
+</blockquote>
+</li>
+<li>一对多联系(1:M)<blockquote>
+<p>N 方的添加 <strong>联系的属性</strong>和1方 的<strong>主键</strong></p>
+</blockquote>
+</li>
+<li>多对多联系(M:N)<blockquote>
+<p>一定要单独创表，表内包含 两个表的<strong>主键</strong>和<strong>联系属性</strong></p>
+</blockquote>
+</li>
+</ul>
+<h2 id="关系的完整性"><a href="#关系的完整性" class="headerlink" title="关系的完整性"></a>关系的完整性</h2><ol>
+<li>实体完整性规则<blockquote>
+<p>实体完整性要求关系的主码具有唯一性且不能取空值。</p>
+<blockquote>
+<p>主码有唯一性且不能取空值</p>
+</blockquote>
+</blockquote>
+</li>
+<li>参照完整性规则<blockquote>
+<p>外键的取值只能等于空值或所参照的主键的取值。</p>
+<blockquote>
+<p>（外键）</p>
+</blockquote>
+</blockquote>
+</li>
+<li>用户定义的的完整性规则<blockquote>
+<p>是由用户根据实际情况对数据库中数据的内容进行的规定，也称为域完整性规则。</p>
+<blockquote>
+<ul>
+<li>默认值：default</li>
+<li>唯一值：unque</li>
+<li>取值范围：check</li>
+<li>空值：</li>
+</ul>
+</blockquote>
+</blockquote>
+</li>
+</ol>
+<h2 id="关系运算"><a href="#关系运算" class="headerlink" title="关系运算"></a>关系运算</h2><blockquote>
+<p>是以关系为运算对象的一组高级运算的集合。关系代数是一种抽象的查询语句，是关系数据操纵语言的一种传统表达方式，即代数方式的数据查询过程。关系代数的运算对象是关系，运算结果也是关系。</p>
+</blockquote>
+<ol>
+<li>笛卡尔积： R x S = {t|t=&lt;t^r,t^s&gt; 并 t^r 属于R 并 t^s 属于 S}<ul>
+<li>A×B={(x,y)|x∈A∧y∈B}</li>
+<li>例如，A={a,b}, B={0,1,2}，则</li>
+<li>A×B={(a, 0), (a, 1), (a, 2), (b, 0), (b, 1), (b, 2)}</li>
+<li>B×A={(0, a), (0, b), (1, a), (1, b), (2, a), (2, b)}<blockquote>
+<p>属性，元组</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li>选择运算<ul>
+<li>选择：行</li>
+<li>投影：列</li>
+</ul>
+</li>
+</ol>
+<h2 id="关系的规范化"><a href="#关系的规范化" class="headerlink" title="关系的规范化"></a>关系的规范化</h2><blockquote>
+<p>关系模式中的异常：</p>
+<ul>
+<li>删除异常：数据在数据库中的重复存放称之为数据冗余</li>
+<li>插入异常：数据冗余，更新数据时维护数据完整性的代价太大</li>
+<li>更新异常：无法插入某部分信息称为插入异常</li>
+<li>数据冗余：不该删除的数据不得不删除</li>
+</ul>
+</blockquote>
+<h2 id="范式的转化"><a href="#范式的转化" class="headerlink" title="范式的转化"></a>范式的转化</h2><blockquote>
+<ul>
+<li>1NF: 每个属性不可再分。</li>
+<li>2NF：不存在非主属性对码的部分函数依赖</li>
+<li>3NF：不存在非主属性对码的部分函数依赖和传递函数依赖</li>
+</ul>
+</blockquote>
+<h2 id="数据库设计"><a href="#数据库设计" class="headerlink" title="数据库设计"></a>数据库设计</h2><blockquote>
+<p>逻辑设计：主要为E-R图的转换和关系模式的主码判定</p>
+</blockquote>
+<h2 id="数据库的基本概念"><a href="#数据库的基本概念" class="headerlink" title="数据库的基本概念"></a>数据库的基本概念</h2><ol>
+<li>数据库的文件类型<ul>
+<li>主数据文件：<strong>必有</strong></li>
+<li><ul>
+<li>数据 + 系统信息 = .mdf</li>
+</ul>
+</li>
+<li><ul>
+<li><strong>有且只有一个</strong></li>
+</ul>
+</li>
+<li>辅助数据文件：<strong>可有可无</strong></li>
+<li><ul>
+<li>除主数据以外的 = .ndf</li>
+</ul>
+</li>
+<li><ul>
+<li><strong>任意个</strong></li>
+</ul>
+</li>
+<li>事务日志文件</li>
+<li><ul>
+<li>所有数据库的更新操作 = .ldf</li>
+</ul>
+</li>
+<li><ul>
+<li><strong>至少有一个</strong> 不属于任何文件组</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>数据文件组：为了便于管理和分配数据而将文件组织在一起，通常可以为一个数据库创建多个文件组(File Group)，将多个数据库文件分配在不同的文件组内分组管理。</p>
+</li>
+<li><p>逻辑数据库</p>
+<ul>
+<li>master 数据库</li>
+<li><ul>
+<li>系统级信息（不要破坏）</li>
+</ul>
+</li>
+<li>model 数据库</li>
+<li><ul>
+<li>模型（之后创建的数据库一定含有）</li>
+</ul>
+</li>
+<li>msdb 数据库</li>
+<li><ul>
+<li>作业调度</li>
+</ul>
+</li>
+<li>tempdb 数据库</li>
+<li><ul>
+<li>临时数据库（仅在一个回话期间有效）</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="数据库的操作"><a href="#数据库的操作" class="headerlink" title="数据库的操作"></a>数据库的操作</h2><ol>
+<li>创建数据库</li>
+</ol>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> datebase &lt;datebase_name&gt;</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li><p>表的创建、修改、删除</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 创建</span></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> student</span><br><span class="line">(</span><br><span class="line">  sno <span class="built_in">char</span>(<span class="number">4</span>) PRIMARY <span class="keyword">KEY</span>,  <span class="comment">--主键</span></span><br><span class="line">  sname <span class="keyword">nvarchar</span>(<span class="number">20</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,  <span class="comment">--不能为空</span></span><br><span class="line">  sex <span class="keyword">nvarchar</span>(<span class="number">4</span>),</span><br><span class="line">  birthday <span class="built_in">date</span></span><br><span class="line">)</span><br><span class="line"><span class="comment">-- 删除</span></span><br><span class="line"><span class="keyword">drop</span> <span class="keyword">table</span> table_name</span><br><span class="line"><span class="comment">-- 修改</span></span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> table_name</span><br><span class="line"><span class="comment">-- 修改sname属性为nvarchar(20) 可以为空</span></span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">column</span> sname <span class="keyword">nvarchar</span>(<span class="number">20</span>) <span class="literal">null</span></span><br><span class="line"><span class="comment">-- 添加字段</span></span><br><span class="line"><span class="keyword">add</span> teacher <span class="keyword">nvarchar</span>(<span class="number">10</span>)</span><br><span class="line"><span class="comment">-- 删除字段</span></span><br><span class="line"><span class="keyword">drop</span> <span class="keyword">column</span> sex</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>约束：约束每列的属性</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> student</span><br><span class="line">(</span><br><span class="line">    sno <span class="built_in">char</span>(<span class="number">4</span>) primary <span class="keyword">key</span>,    <span class="comment">--主键</span></span><br><span class="line">    sex <span class="keyword">nvarchar</span>(<span class="number">4</span>) <span class="keyword">default</span> <span class="string">'男'</span> <span class="comment">/*默认男*/</span> <span class="keyword">check</span>(sex <span class="keyword">in</span> (<span class="string">'男'</span>,<span class="string">'女'</span>)),</span><br><span class="line">    idnumber <span class="built_in">char</span>(<span class="number">18</span>) <span class="keyword">unique</span>,   <span class="comment">--unique 唯一的</span></span><br><span class="line">    teacerid <span class="built_in">char</span>(<span class="number">4</span>)  foreign <span class="keyword">key</span> peferences teacher(teacherid),  <span class="comment">--外键 teacher表中的teacherid</span></span><br><span class="line">    <span class="comment">-- 略</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>数据库查询</p>
+</li>
+</ol>
+<p>很多内容来源于<a href="https://segmentfault.com/a/1190000012922793#articleHeader4" target="_blank" rel="noopener">JasonHe</a></p>
+<ul>
+<li>简单查询</li>
+<li><p><strong>DISTINCT 关键字 过滤重复内容</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 单表查询</span></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> 表名</span><br><span class="line"><span class="comment">-- 多表查询</span></span><br><span class="line"><span class="keyword">SELECT</span> rdID, rdName <span class="keyword">FROM</span> Reader;</span><br><span class="line"><span class="comment">-- DISTINCT 关键字 过滤重复内容</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span> specialty <span class="keyword">FROM</span> student; <span class="comment">/*查询学生表中的专业名称，过滤重复行*/</span></span><br><span class="line"><span class="comment">-- AS 关键字</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span> specialty <span class="keyword">AS</span> 专业名称 <span class="keyword">FROM</span> student;<span class="comment">/*将查询结果中 specialty 取一个列别名*/</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>选择查询</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 比较运算符 =、&gt;、&lt;、&gt;=、&lt;=、!=、&lt;&gt;、!&gt;、!&lt;</span></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> sc <span class="keyword">WHERE</span> score &gt;= <span class="number">60</span></span><br><span class="line"><span class="comment">-- 逻辑表达式 AND、OR、NOT</span></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> student <span class="keyword">WHERE</span> specialty = <span class="string">'计算机'</span> <span class="keyword">AND</span> ssex = <span class="string">'男'</span></span><br><span class="line"><span class="comment">-- 确定范围的关键字 BETWEEN AND、NOT BETWEEN AND</span></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> sc <span class="keyword">WHERE</span> score <span class="keyword">BETWEEN</span> <span class="number">80</span> <span class="keyword">AND</span> <span class="number">90</span></span><br><span class="line"><span class="comment">-- 确定集合的关键字 IN、NOT IN</span></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> student <span class="keyword">WHERE</span> specialty <span class="keyword">IN</span> (<span class="string">'计算机'</span>,<span class="string">'通信'</span>)</span><br><span class="line"><span class="comment">-- 字符匹配关键字 LIKE、NOT LIKE</span></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> student <span class="keyword">WHERE</span> sname <span class="keyword">LIKE</span> <span class="string">'张%'</span> <span class="comment">/*查找姓张的学生*/</span></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> student <span class="keyword">WHERE</span> sname <span class="keyword">LIKE</span> <span class="string">'张_'</span> <span class="comment">/*查找姓张且姓字为两个字的学生*/</span></span><br><span class="line"><span class="comment">-- 空值判断关键字 IS NULL、IS NOT NULL</span></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> sc <span class="keyword">WHERE</span> score <span class="keyword">IS</span> <span class="literal">NULL</span></span><br><span class="line"><span class="comment">-- 复合条件查询</span></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> student <span class="keyword">WHERE</span> sex = <span class="string">'女'</span> <span class="keyword">AND</span> (specialty = <span class="string">'计算机'</span> <span class="keyword">OR</span> specialty = <span class="string">'通信'</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>分组查询</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 简单分组</span></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> student <span class="keyword">GROUP</span> <span class="keyword">BY</span> ssex</span><br><span class="line"><span class="comment">-- HAVING 关键字：选修了两门及以上课程的学生</span></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> student <span class="keyword">GROUP</span> <span class="keyword">BY</span> ssex <span class="keyword">HAVING</span> <span class="keyword">COUNT</span>(cno) &gt;= <span class="number">2</span></span><br><span class="line"><span class="comment">-- 聚合函数</span></span><br><span class="line"><span class="keyword">count</span>()、<span class="keyword">sum</span>()、<span class="keyword">avg</span>()、<span class="keyword">min</span>()、<span class="keyword">max</span>()</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>连接查询</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-------------------------------------------------</span></span><br><span class="line">a表     id   name     b表     id   job   parent_id</span><br><span class="line">        1    张三             1    23    1</span><br><span class="line">        2    李四             2    34    2</span><br><span class="line">        3    王武             3    34    4</span><br><span class="line">a.id 同 parent_id 存在关系</span><br><span class="line"><span class="comment">--------------------------------------------------</span></span><br><span class="line"><span class="comment">-- 内连接</span></span><br><span class="line"><span class="keyword">select</span> a.*,b.* <span class="keyword">from</span> a <span class="keyword">inner</span> <span class="keyword">join</span> b <span class="keyword">on</span> a.id = b.parent_id</span><br><span class="line">结果是：</span><br><span class="line"><span class="number">1</span>   张三       <span class="number">1</span>     <span class="number">23</span>     <span class="number">1</span></span><br><span class="line"><span class="number">2</span>   李四       <span class="number">2</span>     <span class="number">34</span>     <span class="number">2</span></span><br><span class="line"><span class="comment">-- 左外连接</span></span><br><span class="line"><span class="keyword">select</span> a.*,b.* <span class="keyword">from</span> a <span class="keyword">left</span> <span class="keyword">join</span> b <span class="keyword">on</span> a.id = b.parent_id</span><br><span class="line">结果是：</span><br><span class="line"><span class="number">1</span>   张三       <span class="number">1</span>     <span class="number">23</span>     <span class="number">1</span></span><br><span class="line"><span class="number">2</span>   李四       <span class="number">2</span>     <span class="number">34</span>     <span class="number">2</span></span><br><span class="line"><span class="number">3</span>   王武       <span class="literal">null</span></span><br><span class="line"><span class="comment">-- 右外连接</span></span><br><span class="line"><span class="keyword">select</span> a.*,b.* <span class="keyword">from</span> a <span class="keyword">right</span> <span class="keyword">join</span> b <span class="keyword">on</span> a.id=b.parent_id</span><br><span class="line">结果是：</span><br><span class="line"><span class="number">1</span>   张三       <span class="number">1</span>     <span class="number">23</span>     <span class="number">1</span></span><br><span class="line"><span class="number">2</span>   李四       <span class="number">2</span>     <span class="number">34</span>     <span class="number">2</span></span><br><span class="line"><span class="literal">null</span>           <span class="number">3</span>     <span class="number">34</span>     <span class="number">4</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>子查询</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 查询与连晓燕在同一个单位的读者；</span></span><br><span class="line"><span class="keyword">SELECT</span> rdName <span class="keyword">FROM</span> Reader <span class="keyword">WHERE</span> rdDept = (<span class="keyword">SELECT</span> rdDept <span class="keyword">FROM</span> Reader </span><br><span class="line">  <span class="keyword">WHERE</span> rdName = <span class="string">'连小燕'</span>);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>集合运算查询</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- UNION（并集）：查询选修了课程 C001 和 课程 C004 的学生的姓名</span></span><br><span class="line"><span class="keyword">SELECT</span> sname <span class="keyword">FROM</span> sc,student</span><br><span class="line"><span class="keyword">WHERE</span> cno = <span class="string">'C001'</span> <span class="keyword">AND</span> sc.sno = student.sno</span><br><span class="line"><span class="keyword">UNION</span></span><br><span class="line"><span class="keyword">SELECT</span> sname <span class="keyword">FROM</span> sc,student</span><br><span class="line"><span class="keyword">WHERE</span> cno = <span class="string">'C004'</span> <span class="keyword">AND</span> sc.sno = student.sno</span><br><span class="line"><span class="comment">-- EXCEPT（差集）：查询没有选课的学生的学号</span></span><br><span class="line"><span class="keyword">SELECT</span> sno <span class="keyword">FROM</span> student</span><br><span class="line"><span class="keyword">EXCEPT</span></span><br><span class="line"><span class="keyword">SELECT</span> sno <span class="keyword">FROM</span> sc</span><br><span class="line"><span class="comment">-- INTERSECT（交集）：查询即选修了课程 C001 又选修了课程 C004 的学生的姓名</span></span><br><span class="line"><span class="keyword">SELECT</span> sname <span class="keyword">FROM</span> sc,student</span><br><span class="line"><span class="keyword">WHERE</span> cno = <span class="string">'C001'</span> <span class="keyword">AND</span> sc.sno = student.sno</span><br><span class="line"><span class="keyword">INTERSECT</span></span><br><span class="line"><span class="keyword">SELECT</span> sname <span class="keyword">FROM</span> sc,student</span><br><span class="line"><span class="keyword">WHERE</span> cno = <span class="string">'C004'</span> <span class="keyword">AND</span> sc.sno = student.sno</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>对查询结果进行排序</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 默认升序 ASC</span></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> SC <span class="keyword">ORDER</span> <span class="keyword">BY</span> sname <span class="keyword">ASC</span></span><br><span class="line"><span class="comment">-- 降序排序 DESC（按成绩降序，成绩相同的话按学号升序排）</span></span><br><span class="line"><span class="keyword">SELECT</span> sno,score <span class="keyword">FROM</span> SC <span class="keyword">ORDER</span> <span class="keyword">BY</span> score <span class="keyword">DESC</span>,sno <span class="keyword">ASC</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="视图和索引"><a href="#视图和索引" class="headerlink" title="视图和索引"></a>视图和索引</h2><ol>
+<li><p>视图并不是以一组数据的形式存储在数据库中，数据库中只存储视图的定义，不存储视图对应的数据，这些数据仍存储在导出视图的基本表中，视图实际上是一个查询结果。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 创建视图</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">VIEW</span> view_name <span class="keyword">AS</span></span><br><span class="line"><span class="keyword">SELECT</span> column_name(s)</span><br><span class="line"><span class="keyword">FROM</span> table_name</span><br><span class="line"><span class="keyword">WHERE</span> condition</span><br><span class="line"><span class="comment">-- 查看视图</span></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> view_name</span><br><span class="line"><span class="comment">-- 删除视图</span></span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">VIEW</span> view_name</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>索引概述：索引(Index)是对数据库表中一个或多个列的值进行排序的结构，其主要目的是提高SQL Server系统的性能，加快数据的查询速度和减少系统的响应时间。</p>
+</li>
+<li>索引的类型</li>
+</ol>
+<ul>
+<li>聚集索引：</li>
+<li><ul>
+<li>在表和视图中只能有一个聚集索引。</li>
+</ul>
+</li>
+<li><ul>
+<li>当建立主键约束时，若表中没有聚集索引，会用主键列作为聚集索引键。</li>
+</ul>
+</li>
+<li><ul>
+<li>实际应用中一般为定义成主键约束的列建立聚集索引。</li>
+</ul>
+</li>
+<li><ul>
+<li>聚集索引会对表和视图进行物理排序，对查询非常有效。</li>
+</ul>
+</li>
+<li>非聚集索引:</li>
+<li><ul>
+<li>非聚集索引不对表和视图进行物理排序。</li>
+</ul>
+</li>
+<li><ul>
+<li>若表中不存在聚集索引，则表是未排序的。</li>
+</ul>
+</li>
+<li><ul>
+<li>在表或视图中，最多可以建立250个非聚集索引，或者249个非聚集索引和1个聚集索引。</li>
+</ul>
+</li>
+<li>聚集索引和非聚集索引都可以是唯一的索引。因此，只要列中数据是唯一的，就可在同一个表上创建一个唯一的聚集索引。如果必须实施唯一性以确保数据的完整性，则应在列上创建UNIQUE或PRIMARY KEY约束，而不要创建唯一索引。</li>
+</ul>
+<ol start="4">
+<li>创建索引：<code>CREATE INDEX index_name ON table_name(col_name)</code></li>
+</ol>
+<h2 id="T-SQL编程"><a href="#T-SQL编程" class="headerlink" title="T-SQL编程"></a>T-SQL编程</h2><ol>
+<li>变量的声明：<code>DECLARE @var_name VARCHAR(20)</code>、<code>DECLARE @MyCounter INT</code></li>
+<li>变量的分类：“@”开头为局部变量，“@@”开头为全局变量。</li>
+<li>变量的赋值：<code>SET @var_name = GETDATA()</code>、<code>SELECT COUNT(sno)=@MyCounter from student</code></li>
+<li>显示变量的值：<code>PRINT @var_name,@MyCounter</code></li>
+<li><p>批出理语句使用</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 多行注释 */</span></span><br><span class="line"><span class="comment">-- 单行注释</span></span><br><span class="line"><span class="keyword">SELECT</span> sno,sname <span class="keyword">FROM</span> student</span><br><span class="line"><span class="keyword">GO</span> <span class="comment">-- 此处 GO 为批处理语句</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>流程控制语句</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- SET 语句</span></span><br><span class="line"><span class="keyword">DECLARE</span> @myvar <span class="built_in">char</span>(<span class="number">20</span>);</span><br><span class="line"><span class="keyword">SET</span> @myvar = <span class="string">'This is a test'</span>;</span><br><span class="line"><span class="keyword">SELECT</span> @myvar;</span><br><span class="line">GO</span><br><span class="line"></span><br><span class="line"><span class="comment">-- BEGIN END 语句（用于将多个 SQL 语句合并为一个语句块）</span></span><br><span class="line"><span class="keyword">BEGIN</span></span><br><span class="line">  &#123; sql_statement|statement_block &#125;</span><br><span class="line"><span class="keyword">END</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- IF……ELSE 语句：</span></span><br><span class="line"><span class="comment">-- 如果 C001 号课的平均成绩高于 80 分，则显示“平均成绩还不错”，否则显示“平均成绩一般”</span></span><br><span class="line"><span class="keyword">IF</span> ( <span class="keyword">SELECT</span> <span class="keyword">AVG</span>(score) <span class="keyword">FROM</span> sc <span class="keyword">WHERE</span> cno = <span class="string">'coo1'</span>) &gt; <span class="number">80</span></span><br><span class="line">  PRINT <span class="string">'C001 号课的平均成绩还不错'</span></span><br><span class="line"><span class="keyword">ELSE</span></span><br><span class="line">  PRINT <span class="string">'C001 号课的平均成绩一般'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- CASE 语句：以搜索 CASE 格式查询所有学生的考试等级，包括学号、课程号和成绩级别</span></span><br><span class="line"><span class="keyword">SELECT</span> sno,cno,</span><br><span class="line">  <span class="keyword">CASE</span></span><br><span class="line">    <span class="keyword">WHEN</span> score &gt;= <span class="number">90</span> <span class="keyword">then</span> <span class="string">'a'</span></span><br><span class="line">    <span class="keyword">WHEN</span> score &gt;= <span class="number">80</span> <span class="keyword">then</span> <span class="string">'b'</span></span><br><span class="line">    <span class="keyword">WHEN</span> score &gt;= <span class="number">70</span> <span class="keyword">then</span> <span class="string">'c'</span></span><br><span class="line">    <span class="keyword">WHEN</span> score &gt;= <span class="number">60</span> <span class="keyword">then</span> <span class="string">'d'</span></span><br><span class="line">    <span class="keyword">WHEN</span> score &lt; <span class="number">60</span> <span class="keyword">then</span> <span class="string">'e'</span></span><br><span class="line">  <span class="keyword">END</span> <span class="keyword">AS</span> score_level</span><br><span class="line"><span class="keyword">FROM</span> sc</span><br><span class="line"></span><br><span class="line"><span class="comment">-- WHILE 语句：求 1 到 100 的累加和，当和超过 1000 时停止累加，显示累加和以及累加到的位置。</span></span><br><span class="line"><span class="comment">-- 结果：a=1035,i=45</span></span><br><span class="line"><span class="keyword">DECLARE</span> @i <span class="built_in">int</span>,@a <span class="built_in">int</span></span><br><span class="line"><span class="keyword">SET</span> @i = <span class="number">1</span>, @a = <span class="number">0</span></span><br><span class="line"><span class="keyword">WHILE</span> @i &lt;= <span class="number">100</span></span><br><span class="line">  <span class="keyword">BEGIN</span></span><br><span class="line">    <span class="keyword">SET</span> @a = @a + @i</span><br><span class="line">    <span class="keyword">IF</span> @a &gt;= <span class="number">1000</span> BREAK</span><br><span class="line">    <span class="keyword">SET</span> @i = @i + <span class="number">1</span></span><br><span class="line">  <span class="keyword">END</span></span><br><span class="line"><span class="keyword">SELECT</span> @a <span class="keyword">AS</span> <span class="string">'a'</span>,@i <span class="keyword">AS</span> <span class="string">'i'</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>函数</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 聚合函数</span></span><br><span class="line">ADD(),AVG(),SUM()……</span><br><span class="line"><span class="comment">-- 日期函数</span></span><br><span class="line">GETDATE()：返回系统当前的日期和时间</span><br><span class="line">DAY()：返回日期表达式中的日</span><br><span class="line">MOUTH()：返回日期表达式中的月</span><br><span class="line">YEAR()：返回日期表达式中的年</span><br><span class="line"><span class="comment">-- 自定义函数：求选课表中某门课的平均成绩</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">FUNCTION</span> average(@cn <span class="built_in">char</span>(<span class="number">4</span>)) <span class="keyword">RETURNS</span> <span class="built_in">float</span></span><br><span class="line"><span class="keyword">AS</span></span><br><span class="line">  <span class="keyword">BEGIN</span></span><br><span class="line">    <span class="keyword">DECLARE</span> @aver <span class="built_in">float</span></span><br><span class="line">    <span class="keyword">SELECT</span> @aver = (<span class="keyword">SELECT</span> <span class="keyword">avg</span>(score) <span class="keyword">FROM</span> sc <span class="keyword">WHERE</span> cno = @cn)</span><br><span class="line">    <span class="keyword">RETURN</span> @aver</span><br><span class="line">  <span class="keyword">END</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>游标（定义、打开、读取、关闭、释放）</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 利用游标将sc表中选课成绩小于50分的成绩提高30％，将大于等于50分的成绩提高50％</span></span><br><span class="line"><span class="comment">-- 定义游标</span></span><br><span class="line"><span class="keyword">DECLARE</span> SC_Cursor <span class="keyword">CURSOR</span></span><br><span class="line">DYNAMIC <span class="keyword">FOR</span> <span class="keyword">SELECT</span> Grade <span class="keyword">FROM</span> SC <span class="keyword">FOR</span> <span class="keyword">UPDATE</span> <span class="keyword">OF</span> Grade</span><br><span class="line"><span class="comment">-- 打开游标</span></span><br><span class="line"><span class="keyword">OPEN</span> SC_Cursor</span><br><span class="line"><span class="comment">-- 读取游标</span></span><br><span class="line"><span class="keyword">DECLARE</span> @Grade <span class="built_in">INT</span></span><br><span class="line"><span class="keyword">FETCH</span> <span class="keyword">NEXT</span> <span class="keyword">FROM</span> SC_Cursor <span class="keyword">INTO</span> @Grade</span><br><span class="line"><span class="comment">--假如检索到了数据，才处理</span></span><br><span class="line"><span class="keyword">WHILE</span> @@FETCH_STATUS = <span class="number">0</span></span><br><span class="line"><span class="keyword">BEGIN</span></span><br><span class="line">    <span class="comment">-- 填充数据</span></span><br><span class="line">    <span class="keyword">IF</span> @Grade &lt; <span class="number">50</span></span><br><span class="line">        <span class="keyword">UPDATE</span> SC <span class="keyword">SET</span> Grade = @Grade * <span class="number">1.3</span> <span class="keyword">WHERE</span> <span class="keyword">CURRENT</span> <span class="keyword">OF</span> SC_Cursor</span><br><span class="line">    <span class="keyword">ELSE</span></span><br><span class="line">        <span class="keyword">UPDATE</span> SC <span class="keyword">SET</span> Grade = @Grade * <span class="number">1.5</span> <span class="keyword">WHERE</span> <span class="keyword">CURRENT</span> <span class="keyword">OF</span> SC_Cursor</span><br><span class="line">    <span class="comment">-- 填充下一条数据</span></span><br><span class="line">    <span class="keyword">FETCH</span> <span class="keyword">NEXT</span> <span class="keyword">FROM</span> SC_Cursor <span class="keyword">INTO</span> @Grade</span><br><span class="line"><span class="keyword">END</span></span><br><span class="line"><span class="comment">-- 关闭游标</span></span><br><span class="line"><span class="keyword">CLOSE</span> SC_Cursor</span><br><span class="line"><span class="comment">-- 释放游标</span></span><br><span class="line"><span class="keyword">DEALLOCATE</span> SC_Cursor</span><br><span class="line"><span class="keyword">GO</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/GitHub/" rel="tag"># GitHub</a>
+          
+            <a href="/tags/sql/" rel="tag"># sql</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/站在时光的最中央/" rel="prev" title="站在时光最中央">
+                站在时光最中央 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/uploads/avatar.jpg"
+                alt="石头" />
+            
+              <p class="site-author-name" itemprop="name">石头</p>
+              <p class="site-description motion-element" itemprop="description">性格不坏，就是太懒</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/chunrichi" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="545049148@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本概念"><span class="nav-number">1.</span> <span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三级模式结构"><span class="nav-number">2.</span> <span class="nav-text">三级模式结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#两级映像"><span class="nav-number">3.</span> <span class="nav-text">两级映像</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#E-R图"><span class="nav-number">4.</span> <span class="nav-text">E-R图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实体关系图"><span class="nav-number">5.</span> <span class="nav-text">实体关系图</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#联系"><span class="nav-number">5.1.</span> <span class="nav-text">联系</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关系的完整性"><span class="nav-number">6.</span> <span class="nav-text">关系的完整性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关系运算"><span class="nav-number">7.</span> <span class="nav-text">关系运算</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关系的规范化"><span class="nav-number">8.</span> <span class="nav-text">关系的规范化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#范式的转化"><span class="nav-number">9.</span> <span class="nav-text">范式的转化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库设计"><span class="nav-number">10.</span> <span class="nav-text">数据库设计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库的基本概念"><span class="nav-number">11.</span> <span class="nav-text">数据库的基本概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库的操作"><span class="nav-number">12.</span> <span class="nav-text">数据库的操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#视图和索引"><span class="nav-number">13.</span> <span class="nav-text">视图和索引</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#T-SQL编程"><span class="nav-number">14.</span> <span class="nav-text">T-SQL编程</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">石头</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+<br>
+  本页点击 <span id="busuanzi_value_page_pv"></span> 次
+  |  本站总点击 <span id="busuanzi_value_site_pv"></span> 次
+  |  您是第 <span id="busuanzi_value_site_uv"></span> 位访客
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+
+  <!-- 线条 -->
+  <script type="text/javascript" src="/js/src/particle.js" count="50" zindex="-2" opacity="1" color="0,104,183"></script>
+
+  <!-- 小红心 -->
+  <script type="text/javascript" src="/js/src/love.js"></script>
+
+  <!--卖萌-->
+  <script type="text/javascript" src="/js/src/dytitle.js"></script>
+  
+</body>
+</html>
