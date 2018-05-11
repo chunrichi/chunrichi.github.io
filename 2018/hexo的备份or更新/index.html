@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="旧事。">
 <meta property="og:description" content="来源问题所在： 感觉自己的电脑经常会出问题，一出问题我就喜欢重装，于是开始担心了，如果哪天不小心把hexo的原始文件都删了怎么办？那不就gg了？ 所以赶紧的跑去找这种情况的解决方法  解释： hexo：是一个静态博客生成器，根据给定的主题，负责把写好的 Markdown 文章转换成一堆 HTML + CSS + Javascript 页面。另外，hexo 还有把生成好的站点上传到 GitHub P">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-11T03:37:18.039Z">
+<meta property="og:updated_time" content="2018-05-11T03:40:32.177Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hexo的备份or更新">
 <meta name="twitter:description" content="来源问题所在： 感觉自己的电脑经常会出问题，一出问题我就喜欢重装，于是开始担心了，如果哪天不小心把hexo的原始文件都删了怎么办？那不就gg了？ 所以赶紧的跑去找这种情况的解决方法  解释： hexo：是一个静态博客生成器，根据给定的主题，负责把写好的 Markdown 文章转换成一堆 HTML + CSS + Javascript 页面。另外，hexo 还有把生成好的站点上传到 GitHub P">
@@ -440,13 +440,15 @@
 <li>创建仓库，<code>your_name.github.io</code>；</li>
 <li>创建两个分支：master 与 hexo；</li>
 <li>设置hexo为默认分支（因为我们只需要手动管理这个分支上的Hexo网站文件）；</li>
-<li>使用<code></code>git clone <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:your_name/your_name.github.io.git`拷贝仓库；</li>
+<li>使用<code>git clone git@github.com:your_name/your_name.github.io.git</code>拷贝仓库；</li>
 <li>在本地<code>your_name.github.io</code>文件夹下通过Git bash依次执行<code>npm install hexo</code>、<code>hexo init</code>、<code>npm install</code> 和<code>npm install hexo-deployer-git</code>（此时当前分支应显示为hexo）;</li>
 <li>修改_config.yml中的deploy参数，分支应为master；</li>
 <li>依次执行<code>git add .、git commit -m &quot;...&quot;</code>、<code>git push origin hexo</code>提交网站相关的文件；</li>
 <li>执行<code>hexo g -d</code>生成网站并部署到GitHub上。<blockquote>
 <blockquote>
 <p>前四步的目的是，在github上建立一个新的repo，并且把目录同步到本地（这时同步到本地的文件夹可能只有一个readme.md，或者是个空文件夹，但是有一个隐藏的.git文件夹…小白一直在想为什么要clone一个空repo…原来这里是要通过git建立存放本地环境的文件夹…哭）。</p>
+</blockquote>
+<blockquote>
 <p>执行第五步的时候，Hexo会生成一个新的.git，并且覆盖了上文提到的.git…这会导致没法push到hexo分支…正确的做法是，在hexo init前复制.git在完成hexo init后再黏贴回来覆盖新生成的.git…剩下的就按照高票答案就能完成push hexo了</p>
 </blockquote>
 </blockquote>
