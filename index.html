@@ -367,68 +367,19 @@
 
       
         
-          
-            <h2 id="问题由来"><a href="#问题由来" class="headerlink" title="问题由来"></a>问题由来</h2><blockquote>
+          <h2 id="问题由来"><a href="#问题由来" class="headerlink" title="问题由来"></a>问题由来</h2><blockquote>
 <p>由于尝试装了一个Linux双系统，但是装上去之后由于不知道的原因无法连上校园网而且也无法打开终端，只有咬咬牙把系统给删了，问题是装在和Windows10相同硬盘中，共享了一个EFI盘，无法删除干净，在启动系统的时候总会优先进入Linux，更改启动优先项之后，可以直接进入系统，但是进入BIOS时看着很不爽，就查找了解决方法。</p>
 </blockquote>
 <h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><h3 id="问题扩展"><a href="#问题扩展" class="headerlink" title="问题扩展"></a>问题扩展</h3><p>怎么删除双系统？</p>
 <blockquote>
-<p>在Windows10下直接找到对应的分区，格式化或者删除就好</p>
-</blockquote>
-<h3 id="主要的解决方法"><a href="#主要的解决方法" class="headerlink" title="主要的解决方法:"></a>主要的解决方法:</h3><ol>
-<li><p>查看电脑分区信息，确定EFI分区的分区号</p>
-<ul>
-<li><code>Windows +  R</code>打开“运行”</li>
-<li>输入<code>diskmgmt.msc</code>打开 <strong>磁盘管理</strong>（也可以在控制面板等位置进入）</li>
-<li>在<em>状态</em> 栏中找到 <strong>EFI系统分区</strong> 并记录分区号（“卷”栏下对应的最后一个数字）</li>
-</ul>
-</li>
-<li><p>利用管理员权限打开<strong>cmd</strong>，输入<code>diskpart</code></p>
-<ul>
-<li><p>输入<code>list disk</code>展示所有磁盘信息，一般0号磁盘为系统盘</p>
-</li>
-<li><p>输入<code>select disk 0</code> 选择使用的磁盘（选择<strong>EFI系统分区</strong>所在的磁盘，此处默认盘号为  ’0‘  )</p>
-</li>
-<li><p>输入<code>list partition</code> 查看分区列表以确定具体分区</p>
-</li>
-<li><p>输入<code>select partition 1</code>根据之前查看的分区度确定分区（一般大小为260MB，windows下，我的电脑上是  ‘1’  号分区）</p>
-<blockquote>
-<p>在这里有另一个方法省略一下步骤，直接输入<code>delete partition override</code>  强制删除EFI分区，但是可能会造成问题，未尝试这个。</p>
-</blockquote>
-</li>
-<li><p><code>assign letter = p</code> 为win10的EFI分区分配盘符，字母A~Z都可以，不区分大小写，但是<strong>不能够和已有盘符冲突</strong>！！</p>
-</li>
-<li><p><strong>打开电脑，找到并打开新配的盘</strong>  （此处为  ‘p’ 盘）<strong>，找到unbutu文件夹全删掉！</strong></p>
-<blockquote>
-<p>在此处可能会出现不能够打开p盘的问题，若百度的结果无法解决，推荐直接在第一步之前先进入系统的安全模式，再进行操作。</p>
-<p>如何进入安全模式看这个<a href="https://jingyan.baidu.com/article/fc07f98955f22d12fee5195f.html" target="_blank" rel="noopener">win10电脑系统如何进入安全模式</a></p>
-</blockquote>
-</li>
-<li><p>返回终端，<code>remove letter = p</code> 删除配置的盘符。</p>
-</li>
-<li><p>结束</p>
-</li>
-</ul>
-</li>
-</ol>
-<blockquote>
-<p>可能说的不太详细（没有图）可以参考以下链接：</p>
-<p><a href="https://blog.csdn.net/mtllyb/article/details/78635757" target="_blank" rel="noopener">mtllyb的《彻底删除Ubuntu EFI分区及启动项 》</a></p>
-<p><a href="https://www.zhihu.com/question/48275909" target="_blank" rel="noopener">知乎问题《怎样删除EFI分区的Ubuntu引导呢？》</a></p>
-<blockquote>
-<p>对于知乎的这个问题，有一些疑问：</p>
-<ol>
-<li>进入EFI界面真的可以直接使用Delete删除么？</li>
-<li>diskgen，diskgenuis 和 diskpart是一个？</li>
-</ol>
-</blockquote>
-<p><a href="https://www.zhihu.com/question/27743764" target="_blank" rel="noopener">知乎问题《删除旧的ubuntu启动项？》</a></p>
-<blockquote>
-<p>这个和前面的知乎问题有重复</p>
-</blockquote>
-</blockquote>
-
-          
+<p>在Windows10下直接找到对应的分区，格式化或者删除就好<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/EFI删除启动项/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
