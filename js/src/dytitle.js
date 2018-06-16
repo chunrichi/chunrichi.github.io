@@ -1,4 +1,4 @@
-// 自己添加的动态title效果
+// 动态title效果
 // <!--崩溃欺骗-->
 var OriginTitile = document.title;
 var titleTime;
