@@ -108,25 +108,25 @@
 
 
 
-  <meta name="description" content="目的 使用linux时，遇到的问题（入门向），便于记录查询">
+  <meta name="description" content="一. &amp;amp;加在一个命令最后，可以把这个命令放到后台执行，如：1watch  -n 10 sh  test.sh  &amp;amp;  #每10s在后台执行一次test.sh脚本 二. Ctrl + Z可以将一个正在前台执行的命令放到后台，并处于暂停状态，不可执行 三. jobs查看当前有多少在后台运行的命令 jobs -l选项可现实所有任务的PID，jobs的状态可以是running,stoppe">
 <meta name="keywords" content="Ubuntu,Error">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Ubuntu&#39;s Error">
-<meta property="og:url" content="http://yoursite.com/2018/Ubuntu_error/index.html">
+<meta property="og:title" content="Ubuntu 后台任务">
+<meta property="og:url" content="http://yoursite.com/2018/Ubuntu_后台运行/index.html">
 <meta property="og:site_name" content="旧事。">
-<meta property="og:description" content="目的 使用linux时，遇到的问题（入门向），便于记录查询">
+<meta property="og:description" content="一. &amp;amp;加在一个命令最后，可以把这个命令放到后台执行，如：1watch  -n 10 sh  test.sh  &amp;amp;  #每10s在后台执行一次test.sh脚本 二. Ctrl + Z可以将一个正在前台执行的命令放到后台，并处于暂停状态，不可执行 三. jobs查看当前有多少在后台运行的命令 jobs -l选项可现实所有任务的PID，jobs的状态可以是running,stoppe">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-08-15T09:32:41.457Z">
+<meta property="og:updated_time" content="2018-08-16T02:13:01.830Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Ubuntu&#39;s Error">
-<meta name="twitter:description" content="目的 使用linux时，遇到的问题（入门向），便于记录查询">
+<meta name="twitter:title" content="Ubuntu 后台任务">
+<meta name="twitter:description" content="一. &amp;amp;加在一个命令最后，可以把这个命令放到后台执行，如：1watch  -n 10 sh  test.sh  &amp;amp;  #每10s在后台执行一次test.sh脚本 二. Ctrl + Z可以将一个正在前台执行的命令放到后台，并处于暂停状态，不可执行 三. jobs查看当前有多少在后台运行的命令 jobs -l选项可现实所有任务的PID，jobs的状态可以是running,stoppe">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/Ubuntu_error/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/Ubuntu_后台运行/"/>
 
 
 
@@ -136,7 +136,7 @@
   };
 </script>
 
-  <title>Ubuntu's Error | 旧事。</title>
+  <title>Ubuntu 后台任务 | 旧事。</title>
   
 
 
@@ -301,7 +301,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/Ubuntu_error/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/Ubuntu_后台运行/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="石头">
@@ -318,7 +318,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Ubuntu's Error
+          <h1 class="post-title" itemprop="name headline">Ubuntu 后台任务
               
             
           </h1>
@@ -343,7 +343,7 @@
                 
               
 
-              <time title="创建时间：2018-08-15 11:38:00 / 修改时间：17:32:41" itemprop="dateCreated datePublished" datetime="2018-08-15T11:38:00+08:00">2018-08-15</time>
+              <time title="创建时间：2018-08-16 09:29:00 / 修改时间：10:13:01" itemprop="dateCreated datePublished" datetime="2018-08-16T09:29:00+08:00">2018-08-16</time>
             
 
             
@@ -406,25 +406,68 @@
       
 
       
-        <h2 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h2><blockquote>
-<p>使用linux时，遇到的问题（入门向），便于记录查询</p>
-</blockquote>
-<a id="more"></a>
-<ol>
-<li><p><strong>Error</strong>:  <code>E:Unable to locate package</code></p>
-<p> 刚装上Ubuntu16.04后安装软件都提示：<code>Unable to locate package</code>错误，解决方法非常简单，终端输入以下命令即可:</p>
- <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>修改配置</strong>: </p>
+        <h2 id="一-amp"><a href="#一-amp" class="headerlink" title="一. &amp;"></a>一. &amp;</h2><p>加在一个命令最后，可以把这个命令放到后台执行，如：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">watch  -n 10 sh  test.sh  &amp;  #每10s在后台执行一次test.sh脚本</span><br></pre></td></tr></table></figure></p>
+<h2 id="二-Ctrl-Z"><a href="#二-Ctrl-Z" class="headerlink" title="二. Ctrl + Z"></a>二. Ctrl + Z</h2><p>可以将一个正在前台执行的命令放到后台，并处于暂停状态，不可执行</p>
+<h2 id="三-jobs"><a href="#三-jobs" class="headerlink" title="三. jobs"></a>三. jobs</h2><p>查看当前有多少在后台运行的命令</p>
+<p><code>jobs -l</code>选项可现实所有任务的PID，jobs的状态可以是<code>running</code>,<code>stopped</code>,<code>Terminated</code>.<br>如果任务被终止了（kill），shell从当前的shell环境已知的列表中删除任务的进程标识。</p>
 <blockquote>
-<p>修改监听端口</p>
+<p>jobs命令显示的是当前shell环境中所起的后台正在运行或者被挂起的任务信息</p>
+</blockquote>
+<h2 id="四-fg"><a href="#四-fg" class="headerlink" title="四.  fg"></a>四.  fg</h2><p>将后台中的命令调至前台继续运行。如果 后台中有多个命令，可用<code>fg %jobnumber</code>（jobnumber是命令编号，不是进程编号）将选中的命令调出</p>
+<h2 id="五-bg"><a href="#五-bg" class="headerlink" title="五. bg"></a>五. bg</h2><p>将一个在后台暂停的命令，变成在后台继续执行。<br>如果后台中有多个命令，可用<code>bg %jobnumber</code>将选中的命令调出</p>
 <ul>
-<li><code>netstat -an | grep 80</code> 获取端口在实例中是否正常被监听<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tcp        0      0 192.168.1.12:52294      106.11.248.51:80        ESTABLISHED</span><br></pre></td></tr></table></figure>
+<li>将任务转移到后台运行：<ul>
+<li>先ctrl + z；再bg，这样进程就被移到后台运行，终端还能继续接受命令。</li>
+</ul>
+</li>
+<li><p>概念：当前任务</p>
+<ul>
+<li>如果后台的任务号有2个，[1],[2]；如果当第一个后台任务顺利执行完毕，第二个后台任务还在执行中时，当前任务便会自动变成后台任务号码“[2]” 的后台任务。所以可以得出一点，即当前任务是会变动的。当用户输入“fg”、“bg”和“stop”等命令时，如果不加任何引号，则所变动的均是当前任务</li>
+</ul>
 </li>
 </ul>
+<h2 id="六-kill"><a href="#六-kill" class="headerlink" title="六. kill"></a>六. kill</h2><ul>
+<li>后台进程的终止<ol>
+<li>通过<code>jobs</code>命令查看job号，（假设为num），然后执行<code>kill %num</code></li>
+<li>通过<code>ps</code>命令查看job的进程号，（PID，假设为pid），然后执行<code>kill pid</code></li>
+</ol>
+</li>
+<li>前台进程的终止<ul>
+<li>ctrl+c<blockquote>
+<p>kill除了可以终止进程，还能给进程发送其它信号，使用kill -l 可以察看kill支持的信号。</p>
+<p>SIGTERM是不带参数时kill发送的信号，意思是要进程终止运行，但执行与否还得看进程是否支持。如果进程还没有终止，可以使用kill -SIGKILL pid，这是由内核来终止进程，进程不能监听这个信号。</p>
+</blockquote>
+<h2 id="七-nohup"><a href="#七-nohup" class="headerlink" title="七. nohup"></a>七. nohup</h2>忽略hangup信号，防止终端关闭时程序退出<br>如果然程序始终在后台执行，及时关闭当前终端也执行（之前的<code>&amp;</code>做不到），这时候需要nohup。<br>该命令可以在推出当前账户 或者 关闭终端后继续运行相关进程，但在另一个终端的<code>jobs</code>是无法产看到的，此时使用<code>ps</code>（进程查看命令）<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps -aux | grep "test.sh"  #a:显示所有程序 u:以用户为主的格式来显示 x:显示所有程序，不以终端机来区分</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>如果你正在运行一个进程，而且你觉得在退出帐户时该进程还不会结束，那么可以使用nohup命令。该命令可以在你退出帐户/关闭终端之后继续运行相应的进程。</p>
+</blockquote>
+<h2 id="八-setsid"><a href="#八-setsid" class="headerlink" title="八. setsid"></a>八. setsid</h2><p>使用<code>setsid</code>即<code>setsid ./test.sh</code></p>
+<h2 id="九"><a href="#九" class="headerlink" title="九. ()"></a>九. ()</h2><p>将命令放入括号中，比如`(./test &amp;)</p>
+<h2 id="十-stop"><a href="#十-stop" class="headerlink" title="十. stop"></a>十. stop</h2><p>进程挂起：</p>
+<ul>
+<li><p>后台进程的挂起：</p>
+<ul>
+<li><p>在solaris中通过stop命令执行，通过jobs命令查看job号(假设为num)，然后执行stop %num；</p>
+</li>
+<li><p>在redhat中，不存在stop命令，可通过执行命令kill -stop PID，将进程挂起；</p>
+</li>
+<li><p>当要重新执行当前被挂起的任务时，通过bg %num 即可将挂起的job的状态由stopped改为running，仍在后台执行；当需要改为在前台执行时，执行命令fg %num即可；</p>
+</li>
+</ul>
+</li>
+<li>前台进程的挂起：<ul>
+<li>ctrl+Z;</li>
+<li>使用jobs 查看任务。　　使用fg %n　关闭。<blockquote>
+<p><a href="https://blog.csdn.net/scythe666/article/details/51901072" target="_blank" rel="noopener">https://blog.csdn.net/scythe666/article/details/51901072</a><br><a href="https://blog.csdn.net/u014613043/article/details/50843335" target="_blank" rel="noopener">https://blog.csdn.net/u014613043/article/details/50843335</a></p>
 </blockquote>
 </li>
-</ol>
+</ul>
+</li>
+</ul>
 
       
     </div>
@@ -460,8 +503,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/GitHub Page的搭建_hexo/" rel="next" title="GitHub Page的搭建——hexo版">
-                <i class="fa fa-chevron-left"></i> GitHub Page的搭建——hexo版
+              <a href="/2018/Linux_for_mysql5/" rel="next" title="MySQL in Linux">
+                <i class="fa fa-chevron-left"></i> MySQL in Linux
               </a>
             
           </div>
@@ -469,10 +512,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/Ubuntu卸载python2/" rel="prev" title="ubuntu下卸载python2">
-                ubuntu下卸载python2 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -673,7 +712,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#目的"><span class="nav-number">1.</span> <span class="nav-text">目的</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一-amp"><span class="nav-number">1.</span> <span class="nav-text">一. &amp;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二-Ctrl-Z"><span class="nav-number">2.</span> <span class="nav-text">二. Ctrl + Z</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三-jobs"><span class="nav-number">3.</span> <span class="nav-text">三. jobs</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四-fg"><span class="nav-number">4.</span> <span class="nav-text">四.  fg</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五-bg"><span class="nav-number">5.</span> <span class="nav-text">五. bg</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#六-kill"><span class="nav-number">6.</span> <span class="nav-text">六. kill</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#七-nohup"><span class="nav-number">7.</span> <span class="nav-text">七. nohup</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#八-setsid"><span class="nav-number">8.</span> <span class="nav-text">八. setsid</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#九"><span class="nav-number">9.</span> <span class="nav-text">九. ()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#十-stop"><span class="nav-number">10.</span> <span class="nav-text">十. stop</span></a></li></ol></div>
             
 
           </div>
