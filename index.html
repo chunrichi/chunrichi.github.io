@@ -346,7 +346,7 @@
                 
               
 
-              <time title="创建时间：2018-10-30 00:00:00 / 修改时间：23:22:24" itemprop="dateCreated datePublished" datetime="2018-10-30T00:00:00+08:00">2018-10-30</time>
+              <time title="创建时间：2018-10-30 00:00:00 / 修改时间：23:23:48" itemprop="dateCreated datePublished" datetime="2018-10-30T00:00:00+08:00">2018-10-30</time>
             
 
             
@@ -403,8 +403,7 @@
 
       
         
-          
-            <h1 id="Heroku简介"><a href="#Heroku简介" class="headerlink" title="Heroku简介"></a>Heroku简介</h1><p>Heroku 是 Salesforce 旗下云服务商，提供方便便捷的各种云服务，如服务器，数据库，监控，计算等等。</p>
+          <h1 id="Heroku简介"><a href="#Heroku简介" class="headerlink" title="Heroku简介"></a>Heroku简介</h1><p>Heroku 是 Salesforce 旗下云服务商，提供方便便捷的各种云服务，如服务器，数据库，监控，计算等等。</p>
 <p>Heroku 提供了免费版本，这使得想搞一些小东西的人提供了莫大的便捷，虽然他有时长和宕机的限制，但是对于个人程序来说已经足够了。</p>
 <h1 id="快速入门"><a href="#快速入门" class="headerlink" title="快速入门"></a>快速入门</h1><blockquote>
 <p>本部分需要以下准备工作</p>
@@ -419,195 +418,13 @@
 <li>不知道 <code>Postgres</code> 是干啥的</li>
 </ul>
 </blockquote>
-<h2 id="设置"><a href="#设置" class="headerlink" title="设置"></a>设置</h2><blockquote>
-<p>准备工作</p>
-<ul>
-<li>Git 的安装</li>
-<li>Git 的设置</li>
-</ul>
-</blockquote>
-<h3 id="安装Heroku的命令行界面"><a href="#安装Heroku的命令行界面" class="headerlink" title="安装Heroku的命令行界面"></a>安装Heroku的命令行界面</h3><ul>
-<li>Windows 安装 </li>
-<li><ul>
-<li><a href="https://cli-assets.heroku.com/heroku-x64.exe" target="_blank" rel="noopener">64位 下载</a></li>
-</ul>
-</li>
-<li><ul>
-<li><a href="https://cli-assets.heroku.com/heroku-x86.exe" target="_blank" rel="noopener">32位 下载</a></li>
-</ul>
-</li>
-<li>Ubuntu 安装</li>
-<li><ul>
-<li><code>$ sudo snap install heroku --classic</code></li>
-</ul>
-</li>
-</ul>
-<h3 id="安装完成后-登陆"><a href="#安装完成后-登陆" class="headerlink" title="安装完成后-登陆"></a>安装完成后-登陆</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">heroku login</span><br><span class="line">Enter your Heroku credentials.</span><br><span class="line">email:</span><br><span class="line">Password:</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>如果您位于需要使用代理连接外部HTTP / HTTPS服务的防火墙后面，则可以HTTP_PROXYHTTPS_PROXY在运行该heroku命令之前在本地开发环境中设置或环境变量。</p>
-</blockquote>
-<h2 id="准备应用程序"><a href="#准备应用程序" class="headerlink" title="准备应用程序"></a>准备应用程序</h2><blockquote>
-<p>准备一个可以部署的简单应用程序。</p>
-</blockquote>
-<p>克隆示例应用程序以便您拥有可以部署到Heroku的本地版本的代码，请在本地命令shell或终端中执行以下命令：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/heroku/python-getting-started.git</span><br><span class="line">cd python-getting-started</span><br></pre></td></tr></table></figure>
-<p>你现在有一个功能正常的git存储库，它包含一个简单的应用程序。</p>
-<ul>
-<li>runtime.txt指定Python 3.7.0</li>
-<li>requirements.txt由Python的依赖管理器Pip使用的。</li>
-</ul>
-<h2 id="部署应用程序"><a href="#部署应用程序" class="headerlink" title="部署应用程序"></a>部署应用程序</h2><h3 id="创建应用程序"><a href="#创建应用程序" class="headerlink" title="创建应用程序"></a>创建应用程序</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">heroku create</span><br></pre></td></tr></table></figure>
-<p>结果：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">heroku create &lt;appname&gt;</span><br><span class="line">Creating app... done, ⬢ serene-caverns-82714</span><br><span class="line">https://&lt;appname:serene-caverns-82714&gt;.herokuapp.com/ | https://git.heroku.com/&lt;appname:serene-caverns-82714.git&gt;</span><br></pre></td></tr></table></figure>
-<p><em>创建一个app时候也会创建一个 <code>git remote</code>（已调用）并与您的本地git存储库关联</em></p>
-<p><em><code>appname</code> 后面是生成的随机名称</em></p>
-<h3 id="部署你的代码"><a href="#部署你的代码" class="headerlink" title="部署你的代码"></a>部署你的代码</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push heroku master</span><br></pre></td></tr></table></figure>
-<p>结果：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">git push heroku master</span><br><span class="line">Counting objects: 407, done.</span><br><span class="line">Delta compression using up to 8 threads.</span><br><span class="line">Compressing objects: 100% (182/182), done.</span><br><span class="line">Writing objects: 100% (407/407), 68.65 KiB | 68.65 MiB/s, done.</span><br><span class="line">Total 407 (delta 199), reused 407 (delta 199)</span><br><span class="line">remote: Compressing source files... done.</span><br><span class="line">remote: Building source:</span><br><span class="line">remote:</span><br><span class="line">remote: -----&gt; Python app detected</span><br><span class="line">remote:        Using supported version of Python 3.7 (python-3.7.0)</span><br><span class="line">remote: -----&gt; Installing python-3.7.0</span><br><span class="line">remote: -----&gt; Installing pip</span><br><span class="line">remote: -----&gt; Installing SQLite3</span><br><span class="line">remote: -----&gt; Installing requirements with pip</span><br><span class="line">remote:        Collecting django (from -r /tmp/build_394859b69f6aeb1b63e599ce5b6c69bd/requirements.txt (line 1))</span><br><span class="line">remote:          Downloading https://files.pythonhosted.org/packages/32/ab/22530cc1b2114e6067eece94a333d6c749fa1c56a009f0721e51c181ea53/Django-2.1.2-py3-none-any.whl (7.3MB)</span><br><span class="line">remote:        Collecting gunicorn (from -r /tmp/build_394859b69f6aeb1b63e599ce5b6c69bd/requirements.txt (line 2))</span><br><span class="line">remote:          Downloading https://files.pythonhosted.org/packages/8c/da/b8dd8deb741bff556db53902d4706774c8e1e67265f69528c14c003644e6/gunicorn-19.9.0-py2.py3-none-any.whl (112kB)</span><br><span class="line">remote:        Collecting django-heroku (from -r /tmp/build_394859b69f6aeb1b63e599ce5b6c69bd/requirements.txt (line 3))</span><br><span class="line">remote:          Downloading https://files.pythonhosted.org/packages/59/af/5475a876c5addd5a3494db47d9f7be93cc14d3a7603542b194572791b6c6/django_heroku-0.3.1-py2.py3-none-any.whl</span><br><span class="line">remote:        Collecting pytz (from django-&gt;-r /tmp/build_394859b69f6aeb1b63e599ce5b6c69bd/requirements.txt (line 1))</span><br><span class="line">remote:          Downloading https://files.pythonhosted.org/packages/30/4e/27c34b62430286c6d59177a0842ed90dc789ce5d1ed740887653b898779a/pytz-2018.5-py2.py3-none-any.whl (510kB)</span><br><span class="line">remote:        Collecting psycopg2 (from django-heroku-&gt;-r /tmp/build_394859b69f6aeb1b63e599ce5b6c69bd/requirements.txt (line 3))</span><br><span class="line">remote:          Downloading https://files.pythonhosted.org/packages/37/88/40748331bf75d068a07bbea7dc658faceb0ce2e9fffdde550e76d5475e59/psycopg2-2.7.5-cp37-cp37m-manylinux1_x86_64.whl (2.7MB)</span><br><span class="line">remote:        Collecting dj-database-url&gt;=0.5.0 (from django-heroku-&gt;-r /tmp/build_394859b69f6aeb1b63e599ce5b6c69bd/requirements.txt (line 3))</span><br><span class="line">remote:          Downloading https://files.pythonhosted.org/packages/d4/a6/4b8578c1848690d0c307c7c0596af2077536c9ef2a04d42b00fabaa7e49d/dj_database_url-0.5.0-py2.py3-none-any.whl</span><br><span class="line">remote:        Collecting whitenoise (from django-heroku-&gt;-r /tmp/build_394859b69f6aeb1b63e599ce5b6c69bd/requirements.txt (line 3))</span><br><span class="line">remote:          Downloading https://files.pythonhosted.org/packages/07/2e/c77e71cb448f1a507bc2dfec1d5c24e35d14a737837bea6cdfd6d1ff66bd/whitenoise-4.1-py2.py3-none-any.whl</span><br><span class="line">remote:        Installing collected packages: pytz, django, gunicorn, psycopg2, dj-database-url, whitenoise, django-heroku</span><br><span class="line">remote:        Successfully installed dj-database-url-0.5.0 django-2.1.2 django-heroku-0.3.1 gunicorn-19.9.0 psycopg2-2.7.5 pytz-2018.5 whitenoise-4.1</span><br><span class="line">remote:</span><br><span class="line">remote: -----&gt; $ python manage.py collectstatic --noinput</span><br><span class="line">remote:        120 static files copied to '/tmp/build_394859b69f6aeb1b63e599ce5b6c69bd/staticfiles', 376 post-processed.</span><br><span class="line">remote:</span><br><span class="line">remote: -----&gt; Discovering process types</span><br><span class="line">remote:        Procfile declares types -&gt; web</span><br><span class="line">remote:</span><br><span class="line">remote: -----&gt; Compressing...</span><br><span class="line">remote:        Done: 57.1M</span><br><span class="line">remote: -----&gt; Launching...</span><br><span class="line">remote:        Released v5</span><br><span class="line">remote:        https://serene-caverns-82714.herokuapp.com/ deployed to Heroku</span><br><span class="line">remote:</span><br><span class="line">remote: Verifying deploy... done.</span><br><span class="line">To https://git.heroku.com/serene-caverns-82714.git</span><br><span class="line"> * [new branch]      revert-to-requirements -&gt; master</span><br></pre></td></tr></table></figure>
-<p>该应用程序现已部署。确保至少有一个应用程序实例正在运行：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">heroku ps:scale web=1</span><br></pre></td></tr></table></figure>
-<p>现在，通过其应用名称生成的网址访问该应用。作为一个方便的快捷方式，您可以按如下方式打开网站：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">heroku open</span><br></pre></td></tr></table></figure>
-<h3 id="查看日志"><a href="#查看日志" class="headerlink" title="查看日志"></a>查看日志</h3><blockquote>
-<p>Heroku将日志视为从所有app和Heroku组件的输出流聚合的时间排序事件流，为所有事件提供单个通道。</p>
-</blockquote>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">heroku logs --tail</span><br></pre></td></tr></table></figure>
-<p><em>查看有关您使用的一个运行应用程序的信息记录命令</em><code>heroku logs --tail</code></p>
-<p>再次在浏览器中访问您的应用程序，您将看到生成的另一条日志消息。</p>
-<h3 id="Procfile-扩展"><a href="#Procfile-扩展" class="headerlink" title="Procfile 扩展"></a>Procfile 扩展</h3><p>使用Procfile声明各种流程类型，包括：</p>
-<ul>
-<li>您应用的网络服务器</li>
-<li>多种类型的工作进程</li>
-<li>单例过程，例如时钟</li>
-<li>部署新版本之前要运行的任务</li>
-</ul>
-<p>在根目录中用来声明应该启动的服务</p>
-<p>例：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">web: gunicorn gettingstarted.wsgi --log-file -</span><br></pre></td></tr></table></figure>
-<p>这声明了一个进程类型，<em>web以及运行它所需的命令。这个名字web在这里很重要。它声明此进程类型将附加到Heroku 的HTTP路由堆栈，并在部署时接收Web流量。</em></p>
-<p>Procfiles可以包含其他流程类型。例如，您可以为后台工作进程声明一个进程，该进程处理队列中的项目。</p>
-<h4 id="微软Windows"><a href="#微软Windows" class="headerlink" title="微软Windows"></a>微软Windows</h4><p>示例应用程序在Microsoft Windows上有一个用于本地开发的附加Procfile，位于该文件中<code>Procfile.windows</code>。后面的教程步骤将使用它：它启动一个不同的Web服务器，一个与Windows兼容的服务器。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">web: python manage.py runserver 0.0.0.0:5000</span><br></pre></td></tr></table></figure>
-<h3 id="扩展应用程序"><a href="#扩展应用程序" class="headerlink" title="扩展应用程序"></a>扩展应用程序</h3><p>现在，您的应用程序正在单个Web dyno上运行。将dyno想象成一个轻量级容器，它运行在中指定的命令Procfile。</p>
-<p>您可以使用以下ps命令检查正在运行的dynos数量：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">heroku ps</span><br><span class="line">Free dyno hours quota remaining this month: 999h 6m (99%)</span><br><span class="line">Free dyno usage for this app: 0h 0m (0%)</span><br><span class="line">For more information on dyno sleeping and how to upgrade, see:</span><br><span class="line">https://devcenter.heroku.com/articles/dyno-sleeping</span><br><span class="line"></span><br><span class="line">=== web (Free): gunicorn gettingstarted.wsgi (1)</span><br><span class="line">web.1: up 2018/10/12 14:26:45 -0500 (~ 33s ago)</span><br></pre></td></tr></table></figure>
-<p>默认情况下，您的应用程序部署在免费的dyno上。</p>
-<p>免费的dynos会在<strong>半小时不活动</strong>后睡觉（如果他们没有收到任何流量）。<br>这会在唤醒时导致<strong>第一次请求延迟几秒钟</strong>。<br>后续请求将正常执行。免费dynos也会从免费dyno小时的月度帐户级配额中消耗- <em>只要配额没有用尽，所有免费应用程序都可以继续运行</em>。</p>
-<p>为避免dyno睡眠，您可以升级到业余爱好或专业dyno类型，如Dyno Types文章中所述。例如，如果您将应用程序迁移到专业dyno，则可以通过运行命令告诉Heroku执行特定数量的dynos，每个dynos运行您的Web进程类型，从而轻松扩展它。</p>
-<p>在Heroku上扩展应用程序相当于更改正在运行的dynos数量。将web dynos的数量缩减为<strong>零</strong>：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">heroku ps:scale web=0</span><br></pre></td></tr></table></figure>
-<p>通过在Web选项卡上点击刷新再次访问应用程序，或在Web选项卡heroku open中打开它。<strong>您将收到一条错误消息</strong>，因为您不再有任何可用于处理请求的Web dynos。</p>
-<p>再次扩大规模：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">heroku ps:scale web=1</span><br></pre></td></tr></table></figure>
-<p>对于滥用防范，将非免费应用程序扩展到多个dyno需要帐户验证。</p>
-<h3 id="声明应用依赖项"><a href="#声明应用依赖项" class="headerlink" title="声明应用依赖项"></a>声明应用依赖项</h3><p>Heroku通过查找关键文件将应用程序识别为Python应用程序。</p>
-<ul>
-<li><code>requirements.txt</code> 在根目录中包含一个是Heroku识别Python应用程序的一种方法。</li>
-</ul>
-<p>您部署的演示应用程序已经有了 <code>requirements.txt</code> ，它看起来像这样：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">django</span><br><span class="line">gunicorn</span><br><span class="line">django-heroku</span><br></pre></td></tr></table></figure>
-<p>该 <code>requirements.txt</code> 文件一起列出了应用程序依赖项。部署应用程序时，Heroku将读取此文件并使用该<code>pip install -r</code>命令安装相应的Python依赖项。</p>
-<p>要在本地执行此操作，您可以运行以下命令：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install -r requirements.txt</span><br></pre></td></tr></table></figure>
-<p><strong>注意</strong>：必须正确安装 Postgres 才能使此步骤正常工作。</p>
-<p><strong>注意</strong>：如果您正在运行Linux，则libpq-dev还必须安装系统软件包（或您的发行版的等效软件包）。</p>
-<p>安装依赖项还会导致安装其他几个依赖项。你可以使用pip的功能看到它们list：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">pip list</span><br><span class="line">Package         Version</span><br><span class="line">--------------- -------</span><br><span class="line">dj-database-url 0.5.0</span><br><span class="line">Django          2.1.2</span><br><span class="line">django-heroku   0.3.1</span><br><span class="line">gunicorn        19.9.0</span><br><span class="line">pip             10.0.1</span><br><span class="line">psycopg2        2.7.5</span><br><span class="line">pytz            2018.5</span><br><span class="line">setuptools      39.0.1</span><br><span class="line">whitenoise      4.1</span><br></pre></td></tr></table></figure>
-<p>安装依赖项后，您就可以在本地运行应用程序了。</p>
-<h3 id="在本地运行应用程序"><a href="#在本地运行应用程序" class="headerlink" title="在本地运行应用程序"></a>在本地运行应用程序</h3><p>该应用程序几乎准备好在本地启动。Django使用本地资产，所以首先，你需要运行collectstatic：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python manage.py collectstatic</span><br></pre></td></tr></table></figure>
-<p>回答“是”。</p>
-<p>现在使用本地启动应用程序<code>heroku local</code>，它是作为Heroku CLI的一部分安装的。</p>
-<p>如果您使用的是Microsoft Windows系统，请运行以下命令：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">heroku local web -f Procfile.windows</span><br></pre></td></tr></table></figure>
-<p>如果您使用的是Unix系统，只需Procfile运行以下命令即可使用默认值：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">heroku local web</span><br></pre></td></tr></table></figure>
-<p>然后，您的本地Web服务器将启动：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[OKAY] Loaded ENV .env File as KEY=VALUE Format</span><br><span class="line">2:28:11 PM web.1 |  [2018-10-12 14:28:11 -0500] [18712] [INFO] Starting gunicorn 19.9.0</span><br><span class="line">2:28:11 PM web.1 |  [2018-10-12 14:28:11 -0500] [18712] [INFO] Listening at: http://0.0.0.0:5000 (18712)</span><br><span class="line">2:28:11 PM web.1 |  [2018-10-12 14:28:11 -0500] [18712] [INFO] Using worker: sync</span><br><span class="line">2:28:11 PM web.1 |  [2018-10-12 14:28:11 -0500] [18715] [INFO] Booting worker with pid: 18715</span><br></pre></td></tr></table></figure>
-<p>就像Heroku一样，heroku local检查Procfile确定要运行的内容。</p>
-<p>使用Web浏览器打开<code>http：// localhost：5000</code>。您应该会看到您的应用在本地运行</p>
-<p>要停止应用程序在本地运行，请返回终端窗口并按<code>Ctrl+ C</code>退出。</p>
-<h3 id="推送本地更改"><a href="#推送本地更改" class="headerlink" title="推送本地更改"></a>推送本地更改</h3><p>在此步骤中，您将学习如何将本地更改传播到应用程序到Heroku。例如，您将<strong>修改应用程序</strong>以<strong>添加其他依赖项</strong>和<strong>使用它的代码</strong>。</p>
-<p>requests在本地安装：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install requests</span><br></pre></td></tr></table></figure>
-<p>然后将其添加到您的<code>requirements.txt</code>文件中：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">django</span><br><span class="line">gunicorn</span><br><span class="line">django-heroku</span><br><span class="line">requests</span><br></pre></td></tr></table></figure>
-<p>修改<code>hello/views.py</code>以便<code>requests</code>在开始时导入模块：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br></pre></td></tr></table></figure>
-<p>现在修改index方法以使用该模块。尝试index使用以下代码替换当前方法：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">index</span><span class="params">(request)</span>:</span></span><br><span class="line">    r = requests.get(<span class="string">'http://httpbin.org/status/418'</span>)</span><br><span class="line">    print(r.text)</span><br><span class="line">    <span class="keyword">return</span> HttpResponse(<span class="string">'&lt;pre&gt;'</span> + r.text + <span class="string">'&lt;/pre&gt;'</span>)</span><br></pre></td></tr></table></figure>
-<p>现在在<strong>本地测试</strong>：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">heroku local</span><br></pre></td></tr></table></figure>
-<p>访问<code>http：// localhost：5000</code>上的应用程序。您现在应该看到获取<code>http://httpbin.org/status/418</code>的输出，这是一个可爱的茶壶：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">-=[ teapot ]=-</span><br><span class="line"></span><br><span class="line">   _...._</span><br><span class="line"> .'  _ _ `.</span><br><span class="line">| ."` ^ `". _,</span><br><span class="line">\_;`"---"`|//</span><br><span class="line">  |       ;/</span><br><span class="line">  \_     _/</span><br><span class="line">    `"""`</span><br></pre></td></tr></table></figure>
-<p>现在部署。几乎每次部署到Heroku都遵循相同的模式。首先，将修改后的文件<strong>添加到本地git存储库</strong>：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add .</span><br></pre></td></tr></table></figure>
-<p>现在将<strong>更改提交</strong>到存储库：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit -m "Demo"</span><br></pre></td></tr></table></figure>
-<p>现在<strong>进行部署</strong>，就像之前一样：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push heroku master</span><br></pre></td></tr></table></figure>
-<p>最后，<strong>检查</strong>一切是否正常：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">heroku open</span><br></pre></td></tr></table></figure>
-<h3 id="提供附加组件"><a href="#提供附加组件" class="headerlink" title="提供附加组件"></a>提供附加组件</h3><p>附加组件是第三方云服务，可为您的应用程序提供开箱即用的<strong>附加服务</strong>，从持久性到<strong>日志记录</strong>再到<strong>监控</strong>等等。</p>
-<p>默认情况下，Heroku会从您的应用程序中存储<em>1500行日志</em>。但是，它使完整的日志流可用作服务 - 并且几个附加提供程序已编写日志记录服务，提供诸如<em>日志持久性</em>，<em>搜索</em>，<em>电子邮件</em>和<em>SMS警报</em>等内容。</p>
-<p>在此步骤中，您将提供其中一个日志记录加载项<code>Papertrail</code>。</p>
-<p>配置<code>papertrail</code>日志记录附加组件：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">heroku addons:create papertrail</span><br><span class="line">Adding papertrail on sharp-rain-871... done, v4 (free)</span><br><span class="line">Welcome to Papertrail. Questions and ideas are welcome (support@papertrailapp.com). Happy logging!</span><br><span class="line">Use `heroku addons:docs papertrail` to view documentation.</span><br></pre></td></tr></table></figure>
-<p>为了帮助防止滥用，配置附加组件需要<strong>帐户验证</strong>。如果您的帐户未经过验证，系统会指示您访问验证网站。</p>
-<p>现在为您的应用程序部署和配置了加载项。您可以为您的应用列出加载项，如下所示：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">heroku addons</span><br></pre></td></tr></table></figure>
-<p>要查看此特定加载项，请访问您的应用程序的<strong>Heroku URL几次</strong>。<strong>每次访问都会生成更多日志消息</strong>，现在应该将其路由到<code>papertrail</code>附加组件。访问<code>papertrail</code>控制台以查看日志消息：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">heroku addons:open papertrail</span><br></pre></td></tr></table></figure>
-<p>您的浏览器将打开<code>Papertrail Web</code>控制台，显示最新的日志事件。该界面允许您搜索和设置警报.</p>
-<h3 id="启动控制台"><a href="#启动控制台" class="headerlink" title="启动控制台"></a>启动控制台</h3><p>您可以使用该命令在<em>一次性</em>dyno中运行命令，通常是应用程序中的脚本和应用程序<code>heroku run</code>。它还可用于启动附加到本地终端的REPL流程，以便在您的应用环境中进行试验：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">heroku run python manage.py shell</span><br><span class="line">Python 3.7.0 (default, Aug  1 2018, 21:17:03)</span><br><span class="line">[GCC 7.3.0] on linux</span><br><span class="line">Type "help", "copyright", "credits" or "license" for more information.</span><br><span class="line">(InteractiveConsole)</span><br><span class="line"><span class="meta">&gt;</span>&gt;&gt;</span><br></pre></td></tr></table></figure>
-<p>如果收到错误，<code>Error connecting to process</code>则可能需要配置防火墙。</p>
-<p>Python shell在您的应用程序及其所有依赖项的上下文中运行。从这里您可以导入一些应用程序文件。例如，您将能够运行以下内容：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span>&gt;&gt; import requests</span><br><span class="line"><span class="meta">&gt;</span>&gt;&gt; print(requests.get('http://httpbin.org/status/418').text)</span><br><span class="line"></span><br><span class="line">    -=[ teapot ]=-</span><br><span class="line"></span><br><span class="line">       _...._</span><br><span class="line">     .'  _ _ `.</span><br><span class="line">    | ."` ^ `". _,</span><br><span class="line">    \_;`"---"`|//</span><br><span class="line">      |       ;/</span><br><span class="line">      \_     _/</span><br><span class="line">        `"""`</span><br><span class="line"><span class="meta">&gt;</span>&gt;&gt; exit()</span><br></pre></td></tr></table></figure>
-<p>为了真正了解dynos是如何工作的，你可以创建另一个一次性dyno并运行bash命令，这会在该dyno上打开一个shell。然后，您可以在那里执行命令。每个dyno都有自己的短暂文件空间，填充了你的应用程序及其依赖项 - 一旦命令完成（在这种情况下bash），就会<strong>删除dyno</strong>。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">heroku run bash</span><br><span class="line">Running `bash` attached to terminal... up, run.3052</span><br><span class="line">~ $ ls</span><br><span class="line">gettingstarted  hello  manage.py  Procfile  README.md  requirements.txt  runtime.txt  staticfiles</span><br><span class="line">~ $ exit</span><br><span class="line">exit</span><br></pre></td></tr></table></figure>
-<p>不要忘记键入<code>exit</code>退出shell并终止dyno。</p>
-<h3 id="定义配置变量"><a href="#定义配置变量" class="headerlink" title="定义配置变量"></a>定义配置变量</h3><p>Heroku允许您<strong>外部化配置</strong> - 在配置变量中存储加密密钥或外部资源地址等数据。</p>
-<p>在运行时，配置变量作为环境变量公开给应用程序。</p>
-<p>编辑<code>hello/views.py</code>。首先，添加一行来导入os模块：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br></pre></td></tr></table></figure>
-<p>现在修改<code>index</code>方法，使其根据TIMES环境变量的值重复操作：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">index</span><span class="params">(request)</span>:</span></span><br><span class="line">    times = int(os.environ.get(<span class="string">'TIMES'</span>,<span class="number">3</span>))</span><br><span class="line">    <span class="keyword">return</span> HttpResponse(<span class="string">'Hello! '</span> * times)</span><br></pre></td></tr></table></figure>
-<p><code>heroku local</code>将根据<code>.env</code>本地目录中文件的内容自动设置环境。在项目的顶级目录中，已有一个<code>.env</code>包含以下内容的文件：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TIMES=<span class="number">2</span></span><br></pre></td></tr></table></figure>
-<p>如果你运行应用程序<code>heroku local</code>，你会看到两个“你好！”。</p>
-<p>要在Heroku上设置<code>config var</code>，请执行以下命令：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">heroku config:set TIMES=2</span><br></pre></td></tr></table></figure>
-<p>查看使用<code>heroku config</code>以下命令设置的配置变量：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">heroku config</span><br><span class="line">== sharp-rain-871 Config Vars</span><br><span class="line">PAPERTRAIL_API_TOKEN: erdKhPeeeehIcdfY7ne</span><br><span class="line">TIMES: 2</span><br></pre></td></tr></table></figure>
-<p>将更改的应用程序部署到Heroku以查看此操作。</p>
-<h3 id="提供数据库"><a href="#提供数据库" class="headerlink" title="提供数据库"></a>提供数据库</h3><p>该附加市场有大量数据存储的，从Redis的和MongoDB商，Postgres的和MySQL。在此步骤中，您将了解在部署应用程序时自动配置的免费Heroku Postgres附加组件。</p>
-<p>数据库是一个附加组件，因此您可以使用addonsCLI中的命令找到有关为您的<strong>应用程序配置的数据库的更多信息</strong>：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">heroku addons</span><br><span class="line">Add-on                                         Plan       Price  State</span><br><span class="line">─────────────────────────────────────────────  ─────────  ─────  ───────</span><br><span class="line">heroku-postgresql (postgresql-horizontal-27446)  hobby-dev  free   created</span><br><span class="line"> └─ as DATABASE</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
-<p>清单您的应用程序的配置增值经销商将显示您的应用使用连接到数据库的<code>URL</code>， <code>DATABASE_URL</code>：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">heroku config</span><br><span class="line">=== serene-caverns-82714 Config Vars</span><br><span class="line">DATABASE_URL: postgres://qayojflkqzwdlk:c9b49b89f95625e0c1ed225aed3871a888ab41ca53d6d16078fe5f6416f8a402@ec2-23-23-80-20.compute-1.amazonaws.com:5432/dbr6s55rtq1vqg</span><br></pre></td></tr></table></figure>
-<p>Heroku还提供了一个pg显示更多内容的命令：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">heroku pg</span><br><span class="line">=== DATABASE_URL</span><br><span class="line">Plan:                  Hobby-dev</span><br><span class="line">Status:                Available</span><br><span class="line">Connections:           0/20</span><br><span class="line">PG Version:            10.5</span><br><span class="line">Created:               2018-10-12 19:13 UTC</span><br><span class="line">Data Size:             7.6 MB</span><br><span class="line">Tables:                0</span><br><span class="line">Rows:                  0/10000 (In compliance) - refreshing</span><br><span class="line">Fork/Follow:           Unsupported</span><br><span class="line">Rollback:              Unsupported</span><br><span class="line">Continuous Protection: Off</span><br><span class="line">Add-on:                postgresql-horizontal-27446</span><br></pre></td></tr></table></figure>
-<p>这表明我有一个爱好数据库（<strong>免费</strong>），运行<code>Postgres 10.5</code>，没有数据。</p>
-<p>您部署的示例应用程序已具有数据库功能，您应该可以通过访问应用程序的URL并附加来访问该功能<code>/db</code>。例如，如果您的应用程序已部署，<code>https://wonderful-app-287.herokuapp.com/</code>则访问<code>https://wonderful-app-287.herokuapp.com/db</code>。</p>
-<p>但是访问它会产生错误，因为在配置数据库时，尚未创建表。运行标准<code>Django manage.py migrate</code>来创建表。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">heroku run python manage.py migrate</span><br><span class="line">Running `python manage.py migrate` attached to terminal... up, run.1059</span><br><span class="line">Synchronizing apps without migrations:</span><br><span class="line">  Creating tables...</span><br><span class="line">    Creating table hello_greeting</span><br><span class="line">    Running deferred SQL...</span><br><span class="line">  Installing custom SQL...</span><br><span class="line">Running migrations:</span><br><span class="line">  Rendering model states... DONE</span><br><span class="line">  Applying contenttypes.0001_initial... OK</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
-<p>如果您看到一条消息，“您刚刚安装了Django的auth系统，这意味着您没有定义任何超级用户。你想现在创建一个吗？“，键入no。</p>
-<p>现在<code>/db</code>再次访问该路由，每次访问时都会看到一个简单的页面更新：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Page View Report</span><br><span class="line"></span><br><span class="line">April 19, 2017, 8:50 a.m.</span><br><span class="line">April 19, 2017, 8:52 a.m.</span><br></pre></td></tr></table></figure>
-<p>访问数据库的代码很简单，并且使用了一个<code>Greetings</code>可以找到的简单Django模型<code>hello/models.py</code>。</p>
-<p>每当您访问<code>/db</code>应用程序的路径时，将<code>hello/views.py</code>调用文件中的以下方法，该方法将创建一个新的Greeting，然后呈现所有现有的Greetings：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">db</span><span class="params">(request)</span>:</span></span><br><span class="line"></span><br><span class="line">    greeting = Greeting()</span><br><span class="line">    greeting.save()</span><br><span class="line"></span><br><span class="line">    greetings = Greeting.objects.all()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> render(request, <span class="string">'db.html'</span>, &#123;<span class="string">'greetings'</span>: greetings&#125;)</span><br></pre></td></tr></table></figure>
-<p>假设您在本地安装了Postgres，请使用该<code>heroku pg:psql</code>命令连接到远程数据库并查看所有行：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">heroku pg:psql</span><br><span class="line"><span class="meta">--&gt;</span> Connecting to postgresql-horizontal-27446</span><br><span class="line">psql (10.5)</span><br><span class="line">SSL connection (protocol: TLSv1.2, cipher: ECDHE-RSA-AES256-GCM-SHA384, bits: 256, compression: off)</span><br><span class="line">Type "help" for help.</span><br><span class="line"></span><br><span class="line">serene-caverns-82714::DATABASE=&gt;</span><br></pre></td></tr></table></figure>
-<p>阅读更多关于Heroku PostgreSQL的信息。</p>
-<p>可以使用类似的技术来安装MongoDB或Redis附加组件。</p>
-<h1 id="附"><a href="#附" class="headerlink" title="附"></a>附</h1><h2 id="账号注册"><a href="#账号注册" class="headerlink" title="账号注册"></a>账号注册</h2><p>进入<a href="https://signup.heroku.com/signup/dc" target="_blank" rel="noopener">Heroku官网</a> 进行注册。</p>
-<blockquote>
-<p>由于Heroku使用了谷歌的人机识别，此处需要科学上网</p>
-</blockquote>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/0013/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
