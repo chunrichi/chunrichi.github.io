@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.1" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.1" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.4.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="python爬虫的一些总结爬虫作用 收集数据 尽职调查（即：对公司行为的数据调查） 刷流量和秒杀">
+<meta name="keywords" content="python,spider">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python 爬虫的大致总结">
+<meta property="og:url" content="http://yoursite.com/2018/0015/index.html">
+<meta property="og:site_name" content="旧事。">
+<meta property="og:description" content="python爬虫的一些总结爬虫作用 收集数据 尽职调查（即：对公司行为的数据调查） 刷流量和秒杀">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-11-30T07:57:30.317Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="python 爬虫的大致总结">
+<meta name="twitter:description" content="python爬虫的一些总结爬虫作用 收集数据 尽职调查（即：对公司行为的数据调查） 刷流量和秒杀">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/0015/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>python 爬虫的大致总结 | 旧事。</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">旧事。</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">石头的博客</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/0015/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="石头">
+      <meta itemprop="description" content="性格不坏，就是太懒">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="旧事。">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">python 爬虫的大致总结
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-11-29 00:00:00" itemprop="dateCreated datePublished" datetime="2018-11-29T00:00:00+08:00">2018-11-29</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-11-30 15:57:30" itemprop="dateModified" datetime="2018-11-30T15:57:30+08:00">2018-11-30</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="python爬虫的一些总结"><a href="#python爬虫的一些总结" class="headerlink" title="python爬虫的一些总结"></a>python爬虫的一些总结</h1><h2 id="爬虫作用"><a href="#爬虫作用" class="headerlink" title="爬虫作用"></a>爬虫作用</h2><ul>
+<li>收集数据</li>
+<li>尽职调查（即：对公司行为的数据调查）</li>
+<li>刷流量和秒杀</li>
+</ul>
+<a id="more"></a>
+<h2 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h2><h3 id="正则的基本符号"><a href="#正则的基本符号" class="headerlink" title="正则的基本符号"></a>正则的基本符号</h3><ol>
+<li><code>.</code> 点号: 代替除<strong>换行符</strong>以外的任何<strong>一个字符</strong></li>
+<li><code>*</code> 星号: 前面的子表达式出现 <strong>0次</strong> 到 <strong>无限次</strong></li>
+<li><code>?</code> 问号: 前面的子表达式出现 <strong>0次</strong> 或 <strong>1次</strong></li>
+<li><code>\</code> 反斜杠: 转义字符开头</li>
+<li><code>()</code> 小括号: 提取括号里面的内容</li>
+</ol>
+<h3 id="python中使用正则表达式"><a href="#python中使用正则表达式" class="headerlink" title="python中使用正则表达式"></a>python中使用正则表达式</h3><p>使用正则需要先导入模块</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>此处为部分函数</p>
+</blockquote>
+<h4 id="findall"><a href="#findall" class="headerlink" title="findall"></a>findall</h4><blockquote>
+<p>返回所有满足要求的内容</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">re.findall(pattern, string, flags=<span class="number">0</span>)</span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">pattern 正则表达式</span></span><br><span class="line"><span class="string">string 原来的字符串</span></span><br><span class="line"><span class="string">flags 特殊功能的标志</span></span><br><span class="line"><span class="string">@return list 返回匹配到的所有结果，如果没有匹配到结果，就返回空列表</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="comment"># 例子</span></span><br><span class="line">content = <span class="string">'我的啥啥啥账号：1231，密码：1516，我的撒撒撒账号：1231，密码：1516，'</span></span><br><span class="line"><span class="comment">#re.findalll('：(.*?)，', content)</span></span><br><span class="line">re.findall(<span class="string">'账号：(.*?)，密码：(.*?)，'</span>,content)</span><br></pre></td></tr></table></figure>
+<h4 id="search"><a href="#search" class="headerlink" title="search"></a>search</h4><blockquote>
+<p>返回第一个满足要求的字符串，找到就停止匹配</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">re.search(pattern, string, flags=<span class="number">0</span>)</span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">同上</span></span><br><span class="line"><span class="string">利用.group()获取里面的值</span></span><br><span class="line"><span class="string">return class 返回正则对象，没匹配到返回 None</span></span><br><span class="line"><span class="string">group()里面的数值必须小于正则表达式中的 括号</span></span><br><span class="line"><span class="string">值为 1 时才会将表达式中的内容返回</span></span><br><span class="line"><span class="string">'''</span></span><br></pre></td></tr></table></figure>
+<h2 id="简单的网页爬取"><a href="#简单的网页爬取" class="headerlink" title="简单的网页爬取"></a>简单的网页爬取</h2><h3 id="requests-获取网页源代码"><a href="#requests-获取网页源代码" class="headerlink" title="requests 获取网页源代码"></a><code>requests</code> 获取网页源代码</h3><h4 id="GET-请求"><a href="#GET-请求" class="headerlink" title="GET 请求"></a>GET 请求</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="comment"># 获取网页 &lt;Response [200]&gt;</span></span><br><span class="line">html = requests.get(<span class="string">'&lt;string:url&gt;'</span>)</span><br><span class="line"><span class="comment"># 显示 bytes 型网页源码</span></span><br><span class="line">html_bytes = html.content</span><br><span class="line"><span class="comment"># 将 bytes 网页源代码解码为 字符串型，可设置编码格式(默认UTF-8)。如： .decode('GBK2312')</span></span><br><span class="line">html_str = html_bytes.decode()</span><br></pre></td></tr></table></figure>
+<h4 id="POST-请求"><a href="#POST-请求" class="headerlink" title="POST 请求"></a>POST 请求</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">data = &#123;</span><br><span class="line">    <span class="string">'key1'</span>:<span class="string">'value1'</span>,</span><br><span class="line">    <span class="string">'key2'</span>:<span class="string">'value2'</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment"># data根据实际情况进行更改</span></span><br><span class="line"><span class="comment"># 有一些网址是提交JSON格式的内容 需要更改一下代码：.post('网址',json=data)</span></span><br><span class="line">html_formdata = requests.post(<span class="string">'网址'</span>,data=data).content.decode()</span><br></pre></td></tr></table></figure>
+<h3 id="多线程爬虫"><a href="#多线程爬虫" class="headerlink" title="多线程爬虫"></a>多线程爬虫</h3><blockquote>
+<p>目的：提高爬取速度</p>
+</blockquote>
+<h4 id="python-多线程"><a href="#python-多线程" class="headerlink" title="python 多线程"></a>python 多线程</h4><p>Python语言在设计时候，有一个<strong>全局解释器锁</strong>(Global Interpreter Lock, GIL), 导致Python的多线程是<strong>伪多线程</strong>， 即 <em>本质上还是<br>一个线程</em>，但是这个线程每件事只做几毫秒，几毫秒之后就保存现场，换做其他事情，几毫秒之后再做其他的，如此反复。</p>
+<blockquote>
+<p>微观为单线程，在宏观上是多线程。这种机制在 <strong>I/O密集型</strong> 影响不大，但是在 <strong>CPU计算密集型</strong> ，由于只有CPU的一个核，就会对性能产生很大影响</p>
+</blockquote>
+<h5 id="多进程库"><a href="#多进程库" class="headerlink" title="多进程库"></a>多进程库</h5><p><code>multiprocessing</code> 是Python的<strong>多进程库</strong>，用来处理与多进程相关的操作。但由于<em>进程与进程之间不能直接共享内存和堆栈资源</em>，而且启动新的进程开销也比线程大得多，因此使用<strong>多线程</strong>来爬取比使用多进程有更多优势。<code>multiprocessing</code>下面有一个<code>dummy</code>模块，可以让Python的线程使用<code>multiprocessing</code>的各种方法。</p>
+<p><code>dummy</code> 下面有一个<code>Pool</code>类，它用来实现<strong>线程池</strong>。这个线程池有一个<code>map()</code>方法，可以让线程池里面的所有程序都“同时”执行一个函数。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> multiprocessing.dummy <span class="keyword">import</span> Pool</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">calc_power2</span><span class="params">(num)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> num*num</span><br><span class="line"></span><br><span class="line">pool = Pool(<span class="number">3</span>)</span><br><span class="line">origin_num = [x <span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">10</span>)]</span><br><span class="line">result = pool.map(calc_power2, origin_num)</span><br><span class="line">print(<span class="string">f'计算0-9的平方分别为：<span class="subst">&#123;result&#125;</span>'</span>)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>由于这个例子不涉及I/O操作，所以3个线程代码的运行时间并不小于单线程时间<br>原因： <strong>线程切换需要时间</strong><br>导致： 线程池不是越大越好</p>
+</blockquote>
+<h4 id="线程爬虫举例"><a href="#线程爬虫举例" class="headerlink" title="线程爬虫举例"></a>线程爬虫举例</h4><blockquote>
+<p>此处需要了解到，<strong>多线程</strong> 和 <strong>事件驱动的异步模型</strong> 是有区别的。动作越多线程的效率越低。</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">query</span><span class="params">(url)</span>:</span></span><br><span class="line">    retuests.get(url)</span><br><span class="line"></span><br><span class="line">start = time.time()</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">100</span>):</span><br><span class="line">    query(<span class="string">'https://baidu.com'</span>)</span><br><span class="line">end = time.time()</span><br><span class="line">print(<span class="string">f'单线程方位100次百度耗时：<span class="subst">&#123;end - start&#125;</span>'</span>)</span><br><span class="line"></span><br><span class="line">start = time.time()</span><br><span class="line">url_list = []</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">100</span>):</span><br><span class="line">    url_list.append(<span class="string">'https://baidu.com'</span>)</span><br><span class="line">pool = Pool(<span class="number">5</span>)</span><br><span class="line">pool.map(query, url_list)</span><br><span class="line">end = time.time()</span><br><span class="line">print(<span class="string">f'5线程范文100次百度耗时：<span class="subst">&#123;end-start&#125;</span>'</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="高性能HTML内容解析"><a href="#高性能HTML内容解析" class="headerlink" title="高性能HTML内容解析"></a>高性能HTML内容解析</h2><h3 id="XPath"><a href="#XPath" class="headerlink" title="XPath"></a>XPath</h3><blockquote>
+<p>XPath(XML Path)是一种查询语句，特能够在XML和HTML的树状结构中寻找节点。<br>Python使用XPath需要安装第三方库：<code>lxml</code></p>
+</blockquote>
+<h2 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h2><ul>
+<li>python函数注意事项</li>
+</ul>
+<p>函数外面的容器类作为参数传递到函数后，如果函数修改了这个容器里面的值，那么函数外面的容器也会受到印象<br>（即：容器改变，普通变量不变）</p>
+<ul>
+<li>如何读懂一个类</li>
+</ul>
+<ol>
+<li>这个类有哪些<strong>属性</strong>（看外貌）</li>
+<li>这个类有哪些<strong>方法</strong>（能做啥）</li>
+<li>这些方法在<strong>哪调用</strong>（做啥的）</li>
+<li>这些方法<strong>实现的</strong>细节（怎么做）</li>
+</ol>
+<ul>
+<li><code>.*</code> 和 <code>.*?</code> 的区别</li>
+</ul>
+<p><code>.*</code> 贪婪模式，获取最长的满足条件的字符串<br><code>.*?</code> 非贪婪模式，获取最短的能满足条件的字符串</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/python/" rel="tag"># python</a>
+          
+            <a href="/tags/spider/" rel="tag"># spider</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/0014/" rel="next" title="Arduino入门程序合集及解释">
+                <i class="fa fa-chevron-left"></i> Arduino入门程序合集及解释
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/uploads/avatar.jpg"
+                alt="石头" />
+            
+              <p class="site-author-name" itemprop="name">石头</p>
+              <p class="site-description motion-element" itemprop="description">性格不坏，就是太懒</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">15</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">21</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/chunrichi" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友站链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://hovenjay.github.io/" title="Jason'Blog" target="_blank">Jason'Blog</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#python爬虫的一些总结"><span class="nav-number">1.</span> <span class="nav-text">python爬虫的一些总结</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#爬虫作用"><span class="nav-number">1.1.</span> <span class="nav-text">爬虫作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#正则表达式"><span class="nav-number">1.2.</span> <span class="nav-text">正则表达式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#正则的基本符号"><span class="nav-number">1.2.1.</span> <span class="nav-text">正则的基本符号</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#python中使用正则表达式"><span class="nav-number">1.2.2.</span> <span class="nav-text">python中使用正则表达式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#findall"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">findall</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#search"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">search</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#简单的网页爬取"><span class="nav-number">1.3.</span> <span class="nav-text">简单的网页爬取</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#requests-获取网页源代码"><span class="nav-number">1.3.1.</span> <span class="nav-text">requests 获取网页源代码</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#GET-请求"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">GET 请求</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#POST-请求"><span class="nav-number">1.3.1.2.</span> <span class="nav-text">POST 请求</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多线程爬虫"><span class="nav-number">1.3.2.</span> <span class="nav-text">多线程爬虫</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#python-多线程"><span class="nav-number">1.3.2.1.</span> <span class="nav-text">python 多线程</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#多进程库"><span class="nav-number">1.3.2.1.1.</span> <span class="nav-text">多进程库</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#线程爬虫举例"><span class="nav-number">1.3.2.2.</span> <span class="nav-text">线程爬虫举例</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#高性能HTML内容解析"><span class="nav-number">1.4.</span> <span class="nav-text">高性能HTML内容解析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#XPath"><span class="nav-number">1.4.1.</span> <span class="nav-text">XPath</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#附录"><span class="nav-number">1.5.</span> <span class="nav-text">附录</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">石头</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Muse</a></div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  <!--卖萌-->
+  <script type="text/javascript" src="/js/src/dytitle.js"></script>
+  <!-- 线条 -->
+  <script type="text/javascript" src="/js/src/particle.js" count="50" zindex="-2" opacity="1" color="0,104,183"></script>
+
+</body>
+</html>
